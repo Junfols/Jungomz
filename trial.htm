@@ -1,0 +1,388 @@
+#!/usr/bin/env bash
+# package_website.sh
+# Creates the Gomez Family Journey site files and packages them into gomez-family-website.zip
+# Usage:
+#   chmod +x package_website.sh
+#   ./package_website.sh
+set -euo pipefail
+
+OUTDIR="gomezfamily"
+ZIPNAME="gomez-family-website.zip"
+
+echo "Creating site folder: $OUTDIR"
+rm -rf "$OUTDIR" "$ZIPNAME"
+mkdir -p "$OUTDIR"/css
+mkdir -p "$OUTDIR"/images
+
+echo "Writing HTML, CSS and README files..."
+
+cat > "$OUTDIR/index.html" <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The Gomez Family Journey</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>The Gomez Family Journey</h1>
+    <p class="tagline">Faith • Family • Inspiration</p>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="family.html">Our Family</a>
+    <a href="journey.html">Our Journey</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="container">
+    <section class="hero section">
+      <h2>Welcome!</h2>
+      <p>Welcome to <strong>The Gomez Family Journey</strong>. This website is a celebration of our family’s love, growth, and inspirational story through the years. Here you’ll find moments that shaped our lives, lessons learned, and the faith that keeps us strong together.</p>
+      <img src="images/family1.jpg" alt="Family Photo" class="hero-image">
+    </section>
+
+    <section class="section">
+      <h3>Quick links</h3>
+      <ul>
+        <li><a href="family.html">Meet our family</a></li>
+        <li><a href="journey.html">Read our story</a></li>
+        <li><a href="gallery.html">See photos & videos</a></li>
+        <li><a href="contact.html">Contact & QR code</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 by Jungie Gomez</p>
+  </footer>
+</body>
+</html>
+HTML
+
+cat > "$OUTDIR/family.html" <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Our Family - The Gomez Family Journey</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Our Family</h1>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="family.html" class="active">Our Family</a>
+    <a href="journey.html">Our Journey</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="container">
+    <section class="section members">
+      <article class="member">
+        <img src="images/father.jpg" alt="Juan Gomez" class="avatar">
+        <h2>Juan Gomez</h2>
+        <p>The loving father and strong foundation of our family.</p>
+      </article>
+
+      <article class="member">
+        <img src="images/mother.jpg" alt="Maria Gomez" class="avatar">
+        <h2>Maria Gomez</h2>
+        <p>The heart of the family, always guiding with love and faith.</p>
+      </article>
+
+      <article class="member">
+        <img src="images/familykids.jpg" alt="Our Children" class="avatar">
+        <h2>Our Children</h2>
+        <p>Our greatest blessings and our hope for the future.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 by Jungie Gomez</p>
+  </footer>
+</body>
+</html>
+HTML
+
+cat > "$OUTDIR/journey.html" <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Our Journey - The Gomez Family Journey</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Our Inspirational Journey</h1>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="family.html">Our Family</a>
+    <a href="journey.html" class="active">Our Journey</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="container">
+    <article class="section">
+      <p>Our journey began in a small town filled with hope, dreams, and challenges. Through the years, we’ve learned that faith, unity, and perseverance can overcome any obstacle.</p>
+
+      <p>Every chapter in our life is a testament to love and resilience. From humble beginnings to meaningful achievements, our story continues to inspire others to never give up and always hold onto family and faith.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 by Jungie Gomez</p>
+  </footer>
+</body>
+</html>
+HTML
+
+cat > "$OUTDIR/gallery.html" <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gallery - The Gomez Family Journey</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Family Photos & Videos</h1>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="family.html">Our Family</a>
+    <a href="journey.html">Our Journey</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="container">
+    <section class="section gallery">
+      <div class="grid">
+        <img src="images/family1.jpg" alt="Family Photo 1">
+        <img src="images/family2.jpg" alt="Family Photo 2">
+        <img src="images/family3.jpg" alt="Family Photo 3">
+      </div>
+
+      <video controls class="video">
+        <source src="images/familyvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 by Jungie Gomez</p>
+  </footer>
+</body>
+</html>
+HTML
+
+cat > "$OUTDIR/contact.html" <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact - The Gomez Family Journey</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Contact</h1>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="family.html">Our Family</a>
+    <a href="journey.html">Our Journey</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+
+  <main class="container">
+    <section class="section contact">
+      <h2>Get in touch</h2>
+      <p>You can reach us at: <a href="mailto:jungiegomez@example.com">jungiegomez@example.com</a></p>
+
+      <h3>Visit this site with your phone</h3>
+      <p style="text-align:center;">
+        <img src="images/qrcode.png" alt="QR Code to this website" width="200">
+      </p>
+
+      <h3>Send us a message</h3>
+      <!-- Simple form (requires server to process) -->
+      <form action="#" method="post" class="contact-form" onsubmit="alert('This demo form does not submit — hook it up to a server or service to process.'); return false;">
+        <label>
+          Your name:
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Your email:
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Message:
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 by Jungie Gomez</p>
+  </footer>
+</body>
+</html>
+HTML
+
+cat > "$OUTDIR/css/styles.css" <<'CSS'
+/* Shared styles for The Gomez Family Journey site */
+:root{
+  --blue-dark:#274b8a;
+  --blue:#3a66b7;
+  --bg:#f8faff;
+  --muted:#666;
+  --max-width:900px;
+}
+
+*{box-sizing:border-box}
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  color:#222;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+
+.site-header{
+  background:var(--blue);
+  color:#fff;
+  padding:28px 16px;
+  text-align:center;
+}
+.site-header .tagline{margin:6px 0 0; opacity:0.95}
+
+.site-nav{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  background:var(--blue-dark);
+  padding:10px 8px;
+}
+.site-nav a{
+  color:white;
+  text-decoration:none;
+  padding:6px 10px;
+  font-weight:700;
+  border-radius:4px;
+}
+.site-nav a:hover{opacity:0.9}
+.site-nav a.active{
+  background:rgba(255,255,255,0.08);
+  box-shadow:inset 0 -2px 0 rgba(255,255,255,0.05);
+}
+
+.container{
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:0 16px;
+}
+
+.section{
+  background:#fff;
+  padding:28px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.hero-image{max-width:100%; border-radius:10px; margin-top:14px}
+
+/* Members layout */
+.members{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.member{text-align:center}
+.avatar{width:180px;height:180px;object-fit:cover;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.12)}
+
+/* Gallery */
+.gallery .grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.gallery img{width:48%;max-width:420px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.12)}
+.video{display:block;margin:18px auto;border-radius:8px}
+
+/* Contact form */
+.contact-form{display:flex;flex-direction:column;gap:10px;max-width:520px;margin-top:10px}
+.contact-form label{display:flex;flex-direction:column;font-size:14px;color:var(--muted)}
+.contact-form input,.contact-form textarea{padding:8px;border-radius:6px;border:1px solid #ddd;margin-top:6px}
+.contact-form button{align-self:start;padding:8px 14px;background:var(--blue);color:#fff;border:none;border-radius:6px;cursor:pointer}
+.contact-form button:hover{opacity:0.95}
+
+/* Footer */
+.site-footer{background:#eee;text-align:center;padding:14px 8px;font-size:14px;margin-top:24px}
+@media (max-width:600px){
+  .gallery img{width:100%}
+  .site-nav{flex-wrap:wrap}
+}
+CSS
+
+cat > "$OUTDIR/README.md" <<'README'
+# The Gomez Family Journey — Website
+
+What I created
+- A small static website with pages: `index.html`, `family.html`, `journey.html`, `gallery.html`, `contact.html`.
+- A shared stylesheet at `css/styles.css`.
+- All images live in an `images/` folder (placeholders included).
+
+How to preview locally
+1. Put the `images/` folder next to these files (this package contains small placeholder images).
+2. Open `index.html` in a browser (double-click or serve with a simple HTTP server).
+   - Example (Python): `python3 -m http.server` then open `http://localhost:8000/`
+
+Notes & next steps
+- The contact form is a demo (client-only). Hook the form to an email service or server endpoint to accept messages.
+- Replace placeholder images with real photos, and update the email in `contact.html`.
+- If you'd like, I can generate optimized images, a favicon, or a GitHub Pages deploy workflow.
+README
+
+echo "Adding placeholder images (small transparent PNGs used as placeholders)..."
+
+# small 1x1 transparent PNG base64
+PNG_BASE64="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
+
+for img in family1.jpg family2.jpg family3.jpg familykids.jpg father.jpg mother.jpg qrcode.png; do
+  echo "$PNG_BASE64" | base64 -d > "$OUTDIR/images/$img"
+done
+
+# Create an empty (placeholder) mp4 file (not a valid playable video, replace with real video as needed)
+: > "$OUTDIR/images/familyvideo.mp4"
+
+echo "All files created in '$OUTDIR'. Creating zip: $ZIPNAME"
+
+if command -v zip >/dev/null 2>&1; then
+  (cd "$OUTDIR" && zip -r "../$ZIPNAME" .) >/dev/null
+  echo "Zip created: $ZIPNAME"
+else
+  echo "zip command not found. Creating tar.gz instead: ${ZIPNAME%.zip}.tar.gz"
+  tar -czf "${ZIPNAME%.zip}.tar.gz" -C "$OUTDIR" .
+  echo "Archive created: ${ZIPNAME%.zip}.tar.gz"
+fi
+
+echo "Done. You can unzip $ZIPNAME and open index.html to preview the site."
